@@ -102,7 +102,7 @@ ES_E.abundance<-plot.abundance(ES_E)
 ES_E.abundance
 #-----------------------------------2nd.pic.ES_E.abundance's Curve fitting------
 H0 <- function(mo){
-  source("R:/Rcode/肠道微生物/画三张大图需要的函数.R")
+  
   par=c(8,1,3,0.08,5)
   H0 = function(yt,t,par){
     miu = get_miu(par=c(par[1],par[2],par[3]),t)
@@ -150,7 +150,7 @@ ES_S.abundance<-plot.abundance(ES_S)
 ES_S.abundance
 #-----------------------------------3rd.pic.ES_s.abundance's Curve fitting------
 H0 <- function(mo){
-  source("R:/Rcode/肠道微生物/画三张大图需要的函数.R")
+  
   par=c(10,1,3,0.08,5)
   H0 = function(yt,t,par){
     miu = get_miu(par=c(par[1],par[2],par[3]),t)
@@ -197,7 +197,7 @@ S.mo.abundance<-plot.abundance(S_mo)
 S.mo.abundance
 #-----------------------------------4th.pic.S.mo.abundance----------------------
 H0 <- function(mo){
-  source("R:/Rcode/肠道微生物/画三张大图需要的函数.R")
+  
   par=c(8,2.5,2,0.08,5)
   H0 = function(yt,t,par){
     miu = get_miu(par=c(par[1],par[2],par[3]),t)
@@ -377,7 +377,7 @@ for(i in 1:100){
   roww <- sample(c(1:100),100,replace = T)
   ES_Ss <- ES_S[roww,]
   H0 <- function(mo){
-    source("R:/Rcode/肠道微生物/画三张大图需要的函数.R")
+    
     par=c(7,1.5,0.2,0.9,0.25)
     H0 = function(yt,t,par){
       miu = get_miu(par=c(par[1],par[2],par[3]),t)
@@ -409,7 +409,7 @@ for(i in 1:100){
   roww <- sample(c(1:100),100,replace = T)
   S_mos <- S_mo[roww,]
   H0 <- function(mo){
-    source("R:/Rcode/肠道微生物/画三张大图需要的函数.R")
+    
     par=c(8.45,3.15,0.28,0.8,-0.4)
     H0 = function(yt,t,par){
       miu = get_miu(par=c(par[1],par[2],par[3]),t)
