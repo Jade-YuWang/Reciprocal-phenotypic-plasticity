@@ -1,42 +1,40 @@
 📘 Reciprocal-phenotypic-plasticity
+Code Repository for
+“A computational ecological genetic model of phenotypic plasticity in species interactions”
 
-Code Repository for “A computational ecological genetic model of phenotypic plasticity in species interactions”
+This repository contains all analysis scripts, datasets, simulation modules, and mapping functions accompanying:
 
-This repository contains all analysis scripts, datasets, simulation code, and mapping functions used in the article:
+Wang et al., 2025 — A computational ecological genetic model of phenotypic plasticity in species interactions
 
-Wang et al., 2025 – A computational ecological genetic model of phenotypic plasticity in species interactions
+The repository is designed to:
 
-The purpose of this repository is to:
+Reproduce all analyses and figures reported in the manuscript
 
-Reproduce the results of the manuscript
+Provide an open-source implementation of the ecological–genetic mapping framework
 
-Provide open-source implementation of the ecological–genetic mapping framework
+Enable reuse and extension by researchers working on community ecology, microbial interactions, or quantitative genetics
 
-Facilitate reuse and extension of the model by other researchers
-
-Enable transparency through publicly available data and code
-
+Ensure full transparency through publicly available data and executable scripts
 
 🧬 Overview
 
-This repo includes all four modules necessary for full reproduction of the study:
+The complete analysis pipeline consists of four major modules that collectively implement reciprocal phenotypic plasticity modeling, inter-genomic genetic mapping, and genetic architecture dissection:
 
-Estimation of phenotypic plasticity from growth curves
+Estimation of phenotypic plasticity from monoculture and co-culture growth curves
 
-Mapping of reciprocal genetic effects
+Functional mapping of reciprocal genetic effects using coFunMap
 
-Bi-dimensional inter-genomic SNP interaction analysis
+Bi-dimensional SNP interaction mapping between E. coli and S. aureus
 
-Variance dissection and simulation validation
+Variance decomposition of direct, indirect, and epistatic components, with simulation-based validation
 
-
-📁 Repository Structure
-
+Each component is organized into a dedicated folder for clarity and reproducibility.
+```
 Reciprocal-phenotypic-plasticity/
 │
-├── Reciprocal_phenotypic_plasticity/
-│   ├── Reciprocal_phenotypic_plasticity.R
-│   ├── function.R
+├── phenotypin_plasticity_par/
+│   ├── E.coli_phenotypic_plasticity.R
+│   ├── S.aureus_phenotypic_plasticity.R
 │   ├── E_mo.csv
 │   ├── S_mo.csv
 │   ├── ES_E_co.csv
@@ -44,9 +42,9 @@ Reciprocal-phenotypic-plasticity/
 │   ├── E-SNP.txt
 │   ├── S-SNP.txt
 │
-├── phenotypin_plasticity_par/
-│   ├── E.coli_phenotypic_plasticity.R
-│   ├── S.aureus_phenotypic_plasticity.R
+├── Reciprocal_phenotypic_plasticity/
+│   ├── Reciprocal_phenotypic_plasticity.R
+│   ├── function.R
 │   ├── E_mo.csv
 │   ├── S_mo.csv
 │   ├── ES_E_co.csv
@@ -82,6 +80,58 @@ Reciprocal-phenotypic-plasticity/
 │
 └── README.md
 
+```
+
+🔬 Pipeline Overview (Data → Results)
+```
+                ┌───────────────────────────┐
+                │   Raw Data (CSV / SNP)    │
+                │  - Monoculture growth     │
+                │  - Co-culture growth      │
+                │  - E- & S-SNP genotypes   │
+                └──────────────┬────────────┘
+                               │
+                               ▼
+   ┌──────────────────────────────────────────────────────┐
+   │ 1. Phenotypic Processing (phenotypin_plasticity_par) │
+   │  - Fit logistic growth for monoculture & co-culture  │
+   │  - Compute plasticity curves y(t) = x(t) – z(t)      │
+   └───────────────────────────┬──────────────────────────┘
+                               │
+                               ▼
+     ┌──────────────────────────────────────────────────┐
+     │ 2. Functional Mapping (Reciprocal_phenotypic...) │
+     │  - Fit coFunMap model                            │
+     │  - Detect defensive / offensive loci             │
+     │  - Detect horizontal epistasis                   │
+     │  - Output significant SNPs                       │
+     └─────────────────────────┬────────────────────────┘
+                               │  
+                               ▼  
+     ┌──────────────────────────────────────────────────┐
+     │ 3. Bi-dimensional SNP Scan                       │
+     │   (Bi-dimensional mapping of plasticity genes)   │
+     │  - Evaluate E × S SNP combinations               │
+     │  - Produce Venn partitions & E-S interaction map │
+     └─────────────────────────┬────────────────────────┘
+                               │
+                               ▼
+       ┌──────────────────────────────────────────────┐
+       │ 4. Genetic Architecture Dissection           │
+       │   (Dissecting genetic architecture)          │  
+       │  - Decompose variance: direct / indirect /   │
+       │    epistatic components                      │
+       │  - Produce plots and summaries               │
+       └───────────────────────┬──────────────────────┘
+                               │
+                               ▼
+         ┌────────────────────────────────────────────┐
+         │ 5. Simulation Validation (simulation/)     │      
+         │  - Check identifiability and mapping power │
+         │  - Validate model stability                │
+         └────────────────────────────────────────────┘
+
+```
 
 📄 Citation
 
@@ -93,4 +143,4 @@ A computational ecological genetic model of phenotypic plasticity in species int
 🤝 Contact
 
 Corresponding author: Prof. Rongling Wu
-GitHub maintainer: Yu Wang
+Repository maintainer: Yu Wang
